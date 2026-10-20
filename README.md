@@ -54,9 +54,41 @@ Plus modifier `Modifier.chunkyShadow(offset, color, radius)` untuk bayangan tega
 
 ---
 
+## 📐 Util Edge-to-Edge
+
+Di `ui/util/EdgeToEdge.kt` — konten full-bleed sampai ke balik status bar & navigation bar, tapi tetap aman tidak tertutup:
+
+```kotlin
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableWanEdgeToEdge() // bar transparan + ikon kontras otomatis
+        setContent { WanStudioTheme { /* ... */ } }
+    }
+}
+```
+
+Modifier padding inset untuk konten:
+
+```kotlin
+Modifier.topSystemBarPadding()       // ruang sebesar status bar (atas)
+Modifier.bottomSystemBarPadding()    // ruang sebesar navigation bar (bawah)
+Modifier.verticalSystemBarPadding()  // atas + bawah sekaligus
+```
+
+Atau bungkus layar dengan container — background full-bleed, konten diberi padding aman:
+
+```kotlin
+EdgeToEdgeBox {
+    // konten layarmu
+}
+```
+
+---
+
 ## 🚀 Cara Pakai di Aplikasi Lain
 
-1. Salin folder `ui/theme/` dan `ui/components/` ke package aplikasimu.
+1. Salin folder `ui/theme/`, `ui/components/`, dan `ui/util/` ke package aplikasimu.
 2. Sesuaikan `package` di tiap file.
 3. Bungkus UI dengan tema:
 
