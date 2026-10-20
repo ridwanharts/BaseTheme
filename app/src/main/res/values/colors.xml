@@ -28,4 +28,16 @@
     <color name="wan_leaf">#FF629959</color>
     <color name="wan_error">#FFD64545</color>
     <color name="wan_shadow_card">#FFD7DEE6</color>
+
+    <!-- MODE FORMAL (dewasa) — referensi housemait.com -->
+    <color name="formal_primary">#FF6D37AD</color>
+    <color name="formal_primary_dark">#FF5A2B93</color>
+    <color name="formal_primary_container">#FFEFE9FA</color>
+    <color name="formal_ink">#FF24202F</color>
+    <color name="formal_ink_soft">#FF55505F</color>
+    <color name="formal_ink_faint">#FF8A8494</color>
+    <color name="formal_surface">#FFFAF5EF</color>
+    <color name="formal_raised">#FFFFFFFF</color>
+    <color name="formal_line">#FFE9E2D9</color>
+    <color name="formal_bronze">#FFA97C50</color>
 </resources>
