@@ -26,6 +26,7 @@ import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -41,6 +42,7 @@ import com.ridwanharts.basetheme.ui.components.ChunkySecondaryButton
 import com.ridwanharts.basetheme.ui.components.ChunkyTextField
 import com.ridwanharts.basetheme.ui.theme.WanColors
 import com.ridwanharts.basetheme.ui.theme.WanStudioTheme
+import com.ridwanharts.basetheme.ui.theme.formal.FormalTheme
 import com.ridwanharts.basetheme.ui.util.bottomSystemBarPadding
 import com.ridwanharts.basetheme.ui.util.enableWanEdgeToEdge
 import com.ridwanharts.basetheme.ui.util.verticalSystemBarPadding
@@ -50,8 +52,15 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         enableWanEdgeToEdge()
         setContent {
-            WanStudioTheme {
-                ThemeShowcase()
+            var formal by rememberSaveable { mutableStateOf(false) }
+            if (formal) {
+                FormalTheme {
+                    FormalShowcase(onSwitchMode = { formal = false })
+                }
+            } else {
+                WanStudioTheme {
+                    ThemeShowcase(onSwitchMode = { formal = true })
+                }
             }
         }
     }
@@ -59,7 +68,7 @@ class MainActivity : ComponentActivity() {
 
 /** Layar contoh: pameran semua token & komponen tema. */
 @Composable
-fun ThemeShowcase() {
+fun ThemeShowcase(onSwitchMode: () -> Unit = {}) {
     var input by remember { mutableStateOf("") }
     var navIndex by remember { mutableIntStateOf(0) }
     Box(
@@ -85,6 +94,13 @@ fun ThemeShowcase() {
                 text = "Tema chunky untuk semua aplikasi WanStudio",
                 style = MaterialTheme.typography.bodyMedium,
                 color = WanColors.InkFaint,
+            )
+            ChunkySecondaryButton(
+                text = "🎩 Mode Formal (Dewasa)",
+                onClick = onSwitchMode,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 10.dp),
             )
         }
 
