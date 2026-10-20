@@ -3,7 +3,6 @@ package com.ridwanharts.basetheme
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -35,11 +34,13 @@ import com.ridwanharts.basetheme.ui.components.ChunkySecondaryButton
 import com.ridwanharts.basetheme.ui.components.ChunkyTextField
 import com.ridwanharts.basetheme.ui.theme.WanColors
 import com.ridwanharts.basetheme.ui.theme.WanStudioTheme
+import com.ridwanharts.basetheme.ui.util.enableWanEdgeToEdge
+import com.ridwanharts.basetheme.ui.util.verticalSystemBarPadding
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableWanEdgeToEdge()
         setContent {
             WanStudioTheme {
                 ThemeShowcase()
@@ -56,6 +57,7 @@ fun ThemeShowcase() {
         modifier = Modifier
             .fillMaxSize()
             .background(WanColors.Surface)
+            .verticalSystemBarPadding()
             .verticalScroll(rememberScrollState())
             .padding(20.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp),
