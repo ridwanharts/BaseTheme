@@ -1,10 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
-    <color name="teal_200">#FF03DAC5</color>
-    <color name="teal_700">#FF018786</color>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <!-- WanStudio Chunky — token warna (sama dengan ui/theme/Color.kt).
+         Format ARGB untuk dipakai di XML (splash, widget, dsb). -->
+
+    <!-- Brand -->
+    <color name="wan_brand_100">#FFD8EFFE</color>
+    <color name="wan_brand_200">#FFAEDEFF</color>
+    <color name="wan_brand_300">#FF5CCCFC</color>
+    <color name="wan_brand_400">#FF38A9F0</color>
+    <color name="wan_brand_500">#FF1C91EC</color>
+    <color name="wan_brand_600">#FF1A7FD0</color>
+    <color name="wan_brand_700">#FF1C6CB4</color>
+    <color name="wan_brand_800">#FF14568C</color>
+    <color name="wan_brand_900">#FF026996</color>
+
+    <!-- Tinta -->
+    <color name="wan_ink">#FF1B2B3A</color>
+    <color name="wan_ink_soft">#FF3D5266</color>
+    <color name="wan_ink_faint">#FF7D93A8</color>
+
+    <!-- Permukaan -->
+    <color name="wan_surface">#FFF5F5F2</color>
+    <color name="wan_raised">#FFFFFFFF</color>
+    <color name="wan_line">#FFE3E8EE</color>
+
+    <!-- Aksen -->
+    <color name="wan_leaf">#FF629959</color>
+    <color name="wan_error">#FFD64545</color>
+    <color name="wan_shadow_card">#FFD7DEE6</color>
 </resources>
