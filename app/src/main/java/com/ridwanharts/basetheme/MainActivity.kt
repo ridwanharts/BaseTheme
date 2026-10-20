@@ -13,6 +13,8 @@ import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
@@ -20,20 +22,26 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.ridwanharts.basetheme.ui.components.ChunkyBottomNavigation
 import com.ridwanharts.basetheme.ui.components.ChunkyButton
 import com.ridwanharts.basetheme.ui.components.ChunkyCard
+import com.ridwanharts.basetheme.ui.components.ChunkyListItem
+import com.ridwanharts.basetheme.ui.components.ChunkyNavItem
 import com.ridwanharts.basetheme.ui.components.ChunkySecondaryButton
 import com.ridwanharts.basetheme.ui.components.ChunkyTextField
 import com.ridwanharts.basetheme.ui.theme.WanColors
 import com.ridwanharts.basetheme.ui.theme.WanStudioTheme
+import com.ridwanharts.basetheme.ui.util.bottomSystemBarPadding
 import com.ridwanharts.basetheme.ui.util.enableWanEdgeToEdge
 import com.ridwanharts.basetheme.ui.util.verticalSystemBarPadding
 
@@ -53,13 +61,18 @@ class MainActivity : ComponentActivity() {
 @Composable
 fun ThemeShowcase() {
     var input by remember { mutableStateOf("") }
+    var navIndex by remember { mutableIntStateOf(0) }
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(WanColors.Surface),
+    ) {
     Column(
         modifier = Modifier
             .fillMaxSize()
-            .background(WanColors.Surface)
             .verticalSystemBarPadding()
             .verticalScroll(rememberScrollState())
-            .padding(20.dp),
+            .padding(start = 20.dp, end = 20.dp, top = 20.dp, bottom = 120.dp),
         verticalArrangement = Arrangement.spacedBy(24.dp),
     ) {
         Column {
@@ -147,6 +160,43 @@ fun ThemeShowcase() {
             )
             Text("Label — Bold kecil", style = MaterialTheme.typography.labelMedium, color = WanColors.InkFaint)
         }
+
+        SectionTitle("📋 Daftar (LazyColumn)")
+        val siswa = listOf(
+            Triple("🧒", "Budi Santoso", "Kelas 1A"),
+            Triple("👧", "Siti Rahma", "Kelas 1A"),
+            Triple("🧒", "Andi Pratama", "Kelas 1B"),
+            Triple("👧", "Dewi Lestari", "Kelas 1B"),
+            Triple("🧒", "Rian Saputra", "Kelas 2A"),
+            Triple("👧", "Maya Putri", "Kelas 2A"),
+        )
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(300.dp),
+            verticalArrangement = Arrangement.spacedBy(10.dp),
+        ) {
+            items(siswa) { (emoji, nama, kelas) ->
+                ChunkyListItem(emoji = emoji, title = nama, subtitle = kelas, onClick = {})
+            }
+        }
+    }
+
+    ChunkyBottomNavigation(
+        items = listOf(
+            ChunkyNavItem("🏠", "Beranda"),
+            ChunkyNavItem("🎨", "Warna"),
+            ChunkyNavItem("🔘", "Tombol"),
+            ChunkyNavItem("📋", "Daftar"),
+        ),
+        selectedIndex = navIndex,
+        onSelect = { navIndex = it },
+        modifier = Modifier
+            .align(Alignment.BottomCenter)
+            .fillMaxWidth()
+            .padding(start = 16.dp, end = 16.dp, bottom = 16.dp)
+            .bottomSystemBarPadding(),
+    )
     }
 }
 
