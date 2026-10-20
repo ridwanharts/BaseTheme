@@ -50,14 +50,17 @@ fun ComponentActivity.enableWanEdgeToEdge(darkTheme: Boolean = false) {
 }
 
 /** Beri padding sebesar tinggi status bar (atas saja). */
+@Composable
 fun Modifier.topSystemBarPadding(): Modifier =
     this.windowInsetsPadding(WindowInsets.statusBars.only(WindowInsetsSides.Top))
 
 /** Beri padding sebesar tinggi navigation bar (bawah saja). */
+@Composable
 fun Modifier.bottomSystemBarPadding(): Modifier =
     this.windowInsetsPadding(WindowInsets.navigationBars.only(WindowInsetsSides.Bottom))
 
 /** Beri padding atas (status bar) + bawah (navigation bar) sekaligus. */
+@Composable
 fun Modifier.verticalSystemBarPadding(): Modifier =
     this.windowInsetsPadding(
         WindowInsets.systemBars.only(
