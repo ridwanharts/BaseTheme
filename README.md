@@ -54,6 +54,43 @@ Plus modifier `Modifier.chunkyShadow(offset, color, radius)` untuk bayangan tega
 
 ---
 
+## 🧭 Navigasi Bawah & Daftar
+
+**Bottom navigation chunky** (`ui/components/ChunkyNavigation.kt`) — model melayang, kartu putih radius 24dp + hard shadow:
+
+```kotlin
+var tab by remember { mutableIntStateOf(0) }
+
+ChunkyBottomNavigation(
+    items = listOf(
+        ChunkyNavItem("🏠", "Beranda"),
+        ChunkyNavItem("📋", "Absensi"),
+        ChunkyNavItem("🧾", "Tagihan"),
+        ChunkyNavItem("⚙️", "Setelan"),
+    ),
+    selectedIndex = tab,
+    onSelect = { tab = it },
+    modifier = Modifier.bottomSystemBarPadding(), // dari ui/util/EdgeToEdge.kt
+)
+```
+
+**Daftar (LazyColumn)** (`ui/components/ChunkyList.kt`) — padanan RecyclerView di Compose:
+
+```kotlin
+LazyColumn(verticalArrangement = Arrangement.spacedBy(10.dp)) {
+    items(siswa) { s ->
+        ChunkyListItem(
+            emoji = "🧒",
+            title = s.nama,
+            subtitle = s.kelas,
+            onClick = { /* buka detail */ },
+        )
+    }
+}
+```
+
+---
+
 ## 📐 Util Edge-to-Edge
 
 Di `ui/util/EdgeToEdge.kt` — konten full-bleed sampai ke balik status bar & navigation bar, tapi tetap aman tidak tertutup:
